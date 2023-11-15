@@ -2,9 +2,10 @@ const axios = require('axios');
 
 class ProxyModel {
   static async fetchData(params) {
+    const { url, ...otherParams } = params;
     const options = {
       method: 'GET',
-      url: 'https://coinranking1.p.rapidapi.com/coins',
+      url,
       params,
       // params: {
       //   referenceCurrencyUuid: 'yhjMzLPhuIDl',

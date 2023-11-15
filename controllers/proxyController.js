@@ -6,6 +6,7 @@ class ProxyController {
     try {
       // Destructure parameters from the request query
       const {
+        url,
         referenceCurrencyUuid,
         timePeriod,
         tiers,
@@ -13,10 +14,15 @@ class ProxyController {
         orderDirection,
         limit,
         offset,
+        interval
+
+
       } = req.query;
+      
       // caching middleware apply here to store data for specefic time and limit the request time
       await cacheMiddleware(req, res, async () => {
         const data = await ProxyModel.fetchData({
+          url,
           referenceCurrencyUuid,
           timePeriod,
           tiers,
@@ -24,6 +30,7 @@ class ProxyController {
           orderDirection,
           limit,
           offset,
+          interval
         });
         res.status(200).json(data);
       });

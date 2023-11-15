@@ -5,9 +5,9 @@ const ProxyController = require('../controllers/proxyController');
 const router = express.Router();
 
 // Apply rate limiting to the proxy route
-router.use('/api-proxy', rateLimitMiddleware);
+router.use('/v1/api-proxy', rateLimitMiddleware);
 
 // Proxy all requests to the target API with caching
-router.all('/api-proxy', ProxyController.proxyRequest);
+router.all('/v1/api-proxy', ProxyController.proxyRequest);
 
 module.exports = router;
